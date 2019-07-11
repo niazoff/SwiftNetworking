@@ -9,9 +9,9 @@
 import Foundation
 
 /// Returned upon successfully completing an HTTP request with the code and data.
-struct HTTPResponse {
-  let statusCode: Int
-  let data: Data
+public struct HTTPResponse {
+  public let statusCode: Int
+  public let data: Data
 }
 
 extension HTTPResponse: Equatable {}

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension URLRequest {
+public extension URLRequest {
   init?(server: WebSocketServer,
         endpoint: WebSocketEndpoint) {
     var urlComponents = URLComponents()

@@ -10,6 +10,6 @@ import Foundation
 
 /// Conform to this protocol to specify an HTTP endpoint consisting of a method and a path to request from the server.
 /// An example of an HTTP endpoint is `GET /iphone`.
-protocol HTTPEndpoint {
+public protocol HTTPEndpoint {
   var endpoint: (HTTPMethod, URLPath) { get }
 }

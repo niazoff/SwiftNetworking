@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol WebSocketEndpoint {
+public protocol WebSocketEndpoint {
   var endpoint: URLPath { get }
 }

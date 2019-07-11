@@ -13,12 +13,12 @@ import Foundation
 /// An example of an HTTP server is `https://www.apple.com:443`
 /// where the scheme is `https`, the host is `apple.com` and the port is `443`.
 /// Do not include any URL paths in `host` like `/iphone`.
-struct HTTPServer {
-  let scheme: Scheme
-  let host: String
-  let port: Int?
+public struct HTTPServer {
+  public let scheme: Scheme
+  public let host: String
+  public let port: Int?
   
-  init(scheme: Scheme = .https,
+  public init(scheme: Scheme = .https,
        host: String,
        port: Int? = nil) {
     self.scheme = scheme
@@ -26,7 +26,7 @@ struct HTTPServer {
     self.port = port
   }
   
-  enum Scheme: String {
+  public enum Scheme: String {
     case http
     case https
   }

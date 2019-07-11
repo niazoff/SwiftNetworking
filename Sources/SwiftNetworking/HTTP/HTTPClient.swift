@@ -10,17 +10,17 @@ import Foundation
 import Combine
 
 /// Returned upon successfully or unsuccessfully completing an HTTP request.
-typealias HTTPResult = Result<HTTPResponse, Error>
+public typealias HTTPResult = Result<HTTPResponse, Error>
 
 /// An HTTP client that can send requests to a server.
-protocol HTTPClient {
+public protocol HTTPClient {
   /// Sends a `URLRequest` to load from the server.
   /// - Returns: A `Task` that encapsulates the loading task.
   @discardableResult
   func send(_ request: URLRequest, completionHandler: @escaping (HTTPResult) -> Void) -> Task
 }
 
-extension HTTPClient {
+public extension HTTPClient {
   /// Sends a `URL` request to load from the server.
   /// - Returns: A `Task` that encapsulates the loading task.
   @discardableResult
@@ -30,7 +30,7 @@ extension HTTPClient {
 }
 
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-extension HTTPClient {
+public extension HTTPClient {
   func taskPublisher(for request: URLRequest) -> HTTPTaskPublisher {
     HTTPTaskPublisher(client: self, request: request)
   }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension URLRequest {
+public extension URLRequest {
   init?(server: HTTPServer,
         endpoint: HTTPEndpoint) {
     var urlComponents = URLComponents()
@@ -22,7 +22,7 @@ extension URLRequest {
   }
 }
 
-extension URLRequest {
+public extension URLRequest {
   var safeHTTPMethod: HTTPMethod? {
     get {
       guard let httpMethodString = self.httpMethod else { return nil }

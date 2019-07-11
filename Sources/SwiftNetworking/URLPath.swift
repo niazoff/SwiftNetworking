@@ -9,4 +9,4 @@
 import Foundation
 
 /// Should begin with a `/`.
-typealias URLPath = String
+public typealias URLPath = String

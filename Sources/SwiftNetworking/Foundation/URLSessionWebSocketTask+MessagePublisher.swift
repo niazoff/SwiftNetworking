@@ -10,19 +10,19 @@ import Foundation
 import Combine
 
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-extension URLSessionWebSocketTask {
+public extension URLSessionWebSocketTask {
   class MessagePublisher: Publisher {
-    typealias Output = Message
-    typealias Failure = Error
+    public typealias Output = Message
+    public typealias Failure = Error
     
     private let task: URLSessionWebSocketTask
     private var currentValuesCount = 0
     
-    init(task: URLSessionWebSocketTask) {
+    public init(task: URLSessionWebSocketTask) {
       self.task = task
     }
     
-    func receive<S>(subscriber: S) where S: Subscriber, S.Input == Output, S.Failure == Failure {
+    public func receive<S>(subscriber: S) where S: Subscriber, S.Input == Output, S.Failure == Failure {
       configureTask(for: subscriber)
     }
     
@@ -39,16 +39,16 @@ extension URLSessionWebSocketTask {
     }
     
     private func handle<S>(_ newMessage: Message, for subscriber: S) where S: Subscriber, S.Input == Output, S.Failure == Failure {
-      switch subscriber.receive(newMessage) {
-      case .max(let maxCount):
-        guard currentValuesCount < maxCount else { break }; fallthrough
-      case .unlimited: configureTask(for: subscriber)
+      let demand = subscriber.receive(newMessage)
+      if let maxCount = demand.max {
+        guard currentValuesCount < maxCount else { return }
       }
+      configureTask(for: subscriber)
     }
   }
 }
 
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension URLSessionWebSocketTask {
-  func messagePublisher() -> MessagePublisher { MessagePublisher(task: self) }
+  public func messagePublisher() -> MessagePublisher { MessagePublisher(task: self) }
 }

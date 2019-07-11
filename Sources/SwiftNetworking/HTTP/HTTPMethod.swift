@@ -12,6 +12,6 @@ import Foundation
 ///
 /// Every HTTP request requires a method.
 /// Most of the time requests simply use the `GET` method as in `GET https://www.apple.com/`.
-enum HTTPMethod: String {
+public enum HTTPMethod: String {
   case GET, POST, PUT, PATCH, DELETE
 }

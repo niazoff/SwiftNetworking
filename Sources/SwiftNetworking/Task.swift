@@ -9,7 +9,7 @@
 import Foundation
 
 /// Encapsulates a loading task.
-protocol Task {
+public protocol Task {
   /// Temporarily suspends a task.
   func suspend()
   

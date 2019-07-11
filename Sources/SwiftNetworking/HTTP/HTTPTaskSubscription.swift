@@ -10,14 +10,14 @@ import Foundation
 import Combine
 
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-class HTTPTaskSubscription: Subscription {
-  let task: Task
+public class HTTPTaskSubscription: Subscription {
+  public let task: Task
   
-  init(task: Task) {
+  public init(task: Task) {
     self.task = task
   }
   
-  func request(_ demand: Subscribers.Demand) {}
+  public func request(_ demand: Subscribers.Demand) {}
   
-  func cancel() { task.cancel() }
+  public func cancel() { task.cancel() }
 }

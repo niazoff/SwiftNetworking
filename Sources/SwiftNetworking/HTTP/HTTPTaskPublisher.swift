@@ -10,14 +10,14 @@ import Foundation
 import Combine
 
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-struct HTTPTaskPublisher: Publisher {
-  typealias Output = HTTPResponse
-  typealias Failure = Error
+public struct HTTPTaskPublisher: Publisher {
+  public typealias Output = HTTPResponse
+  public typealias Failure = Error
   
-  let client: HTTPClient
-  let request: URLRequest
+  public let client: HTTPClient
+  public let request: URLRequest
   
-  func receive<S>(subscriber: S) where S: Subscriber, S.Input == Output, S.Failure == Failure {
+  public func receive<S>(subscriber: S) where S: Subscriber, S.Input == Output, S.Failure == Failure {
     subscriber.receive(subscription: HTTPTaskSubscription(task: client.send(request) { result in
       switch result {
       case .success(let response):

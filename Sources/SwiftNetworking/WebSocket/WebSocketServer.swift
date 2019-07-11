@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct WebSocketServer {
-  let scheme: Scheme
-  let host: String
-  let port: Int?
+public struct WebSocketServer {
+  public let scheme: Scheme
+  public let host: String
+  public let port: Int?
   
-  init(scheme: Scheme = .wss,
+  public init(scheme: Scheme = .wss,
        host: String,
        port: Int? = nil) {
     self.scheme = scheme
@@ -21,7 +21,7 @@ struct WebSocketServer {
     self.port = port
   }
   
-  enum Scheme: String {
+  public enum Scheme: String {
     case ws
     case wss
   }
