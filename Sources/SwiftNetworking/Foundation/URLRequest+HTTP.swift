@@ -10,12 +10,14 @@ import Foundation
 
 public extension URLRequest {
   init?(server: HTTPServer,
-        endpoint: HTTPEndpoint) {
+        endpoint: HTTPEndpoint,
+        queryItems: [URLQueryItem]? = nil) {
     var urlComponents = URLComponents()
     urlComponents.scheme = server.scheme.rawValue
     urlComponents.host = server.host
     urlComponents.port = server.port
     urlComponents.path = endpoint.endpoint.1
+    urlComponents.queryItems = queryItems
     guard let url = urlComponents.url else { return nil }
     self.init(url: url)
     self.safeHTTPMethod = endpoint.endpoint.0
