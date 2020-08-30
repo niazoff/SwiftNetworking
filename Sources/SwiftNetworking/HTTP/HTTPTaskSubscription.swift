@@ -6,6 +6,7 @@
 //  Copyright © 2019 Natanel Niazoff. All rights reserved.
 //
 
+#if canImport(Combine)
 import Foundation
 import Combine
 
@@ -21,3 +22,4 @@ public class HTTPTaskSubscription: Subscription {
   
   public func cancel() { task.cancel() }
 }
+#endif

@@ -6,6 +6,7 @@
 //  Copyright © 2019 Natanel Niazoff. All rights reserved.
 //
 
+#if canImport(Combine)
 import Foundation
 import Combine
 
@@ -52,3 +53,4 @@ public extension URLSessionWebSocketTask {
 extension URLSessionWebSocketTask {
   public func messagePublisher() -> MessagePublisher { MessagePublisher(task: self) }
 }
+#endif

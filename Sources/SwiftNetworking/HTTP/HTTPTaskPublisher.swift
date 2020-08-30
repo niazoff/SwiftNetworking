@@ -6,6 +6,7 @@
 //  Copyright © 2019 Natanel Niazoff. All rights reserved.
 //
 
+#if canImport(Combine)
 import Foundation
 import Combine
 
@@ -29,3 +30,4 @@ public struct HTTPTaskPublisher: Publisher {
     }))
   }
 }
+#endif

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Combine
 
 /// Returned upon successfully or unsuccessfully completing an HTTP request.
 public typealias HTTPResult = Result<HTTPResponse, Error>
@@ -29,6 +28,9 @@ public extension HTTPClient {
   }
 }
 
+#if canImport(Combine)
+import Combine
+
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension HTTPClient {
   func taskPublisher(for request: URLRequest) -> HTTPTaskPublisher {
@@ -39,3 +41,4 @@ public extension HTTPClient {
     self.taskPublisher(for: URLRequest(url: url))
   }
 }
+#endif
