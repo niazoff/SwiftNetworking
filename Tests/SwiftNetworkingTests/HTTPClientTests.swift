@@ -7,8 +7,10 @@
 //
 
 import XCTest
-import Combine
 @testable import SwiftNetworking
+#if canImport(Combine)
+import Combine
+#endif
 
 final class HTTPClientTests: XCTestCase {
   let testURL: URL = {
@@ -32,7 +34,7 @@ final class HTTPClientTests: XCTestCase {
     }
   }
   
-  
+  #if canImport(Combine)
   @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
   func testTaskPublisher() {
     let testResponse = HTTPResponse(statusCode: 200, data: testData)
@@ -45,4 +47,5 @@ final class HTTPClientTests: XCTestCase {
         }
       }) { XCTAssertEqual($0, testResponse) }
   }
+  #endif
 }
