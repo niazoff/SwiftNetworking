@@ -22,6 +22,12 @@ public extension URLRequest {
     self.init(url: url)
     self.safeHTTPMethod = endpoint.endpoint.0
   }
+  
+  init?(server: HTTPServer,
+        endpoint: HTTPEndpoint,
+        queryItems: [String: String]? = nil) {
+    self.init(server: server, endpoint: endpoint, queryItems: queryItems?.map(URLQueryItem.init))
+  }
 }
 
 public extension URLRequest {
