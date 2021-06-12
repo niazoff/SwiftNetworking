@@ -34,6 +34,14 @@ final class HTTPClientTests: XCTestCase {
     }
   }
   
+  @available(macOS 12, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+  func testAsyncSend() async throws {
+    let testResponse = HTTPResponse(statusCode: 200, data: testData)
+    let testClient = MockHTTPClient { _ in (.success(testResponse), MockTask()) }
+    let response = try await testClient.response(from: testURL)
+    XCTAssertEqual(response, testResponse)
+  }
+  
   #if canImport(Combine)
   @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
   func testTaskPublisher() {
