@@ -42,7 +42,7 @@ public extension HTTPClient {
   }
   
   @available(macOS 12, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
-  func response(from url: URL) async throws -> HTTPResponse  {
+  func response(from url: URL) async throws -> HTTPResponse {
     try await response(from: URLRequest(url: url))
   }
 }
