@@ -34,6 +34,7 @@ final class HTTPClientTests: XCTestCase {
     }
   }
   
+  #if compiler(>=5.5)
   @available(macOS 12, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
   func testAsyncSend() async throws {
     let testResponse = HTTPResponse(statusCode: 200, data: testData)
@@ -41,6 +42,7 @@ final class HTTPClientTests: XCTestCase {
     let response = try await testClient.response(from: testURL)
     XCTAssertEqual(response, testResponse)
   }
+  #endif
   
   #if canImport(Combine)
   @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)

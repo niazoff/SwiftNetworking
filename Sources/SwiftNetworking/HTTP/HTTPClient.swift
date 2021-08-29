@@ -28,6 +28,7 @@ public extension HTTPClient {
   }
 }
 
+#if compiler(>=5.5)
 public extension HTTPClient {
   @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
   func response(from request: URLRequest) async throws -> HTTPResponse {
@@ -46,6 +47,7 @@ public extension HTTPClient {
     try await response(from: URLRequest(url: url))
   }
 }
+#endif
 
 #if canImport(Combine)
 import Combine
