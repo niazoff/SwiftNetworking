@@ -28,31 +28,42 @@ public extension HTTPClient {
   }
 }
 
-#if compiler(>=5.5)
 public extension HTTPClient {
-  @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
   func response(from request: URLRequest) async throws -> HTTPResponse {
-    try await withCheckedThrowingContinuation { continuation in
-      send(request) { result in
-        switch result {
-          case .success(let response): continuation.resume(returning: response)
-          case .failure(let error): continuation.resume(throwing: error)
+    let taskActor = TaskActor()
+    return try await withTaskCancellationHandler {
+      try await withCheckedThrowingContinuation { continuation in
+        _Concurrency.Task {
+          await taskActor.set(send(request) { result in
+            switch result {
+              case .success(let response): continuation.resume(returning: response)
+              case .failure(let error): continuation.resume(throwing: error)
+            }
+          })
         }
       }
-    }
+    } onCancel: { _Concurrency.Task { await taskActor.cancel() } }
   }
   
-  @available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+  @available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 8.0, *)
   func response(from url: URL) async throws -> HTTPResponse {
     try await response(from: URLRequest(url: url))
   }
 }
-#endif
+
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+private actor TaskActor {
+  private var task: Task?
+  
+  func set(_ task: Task) { self.task = task }
+  func cancel() { task?.cancel() }
+}
 
 #if canImport(Combine)
 import Combine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension HTTPClient {
   func taskPublisher(for request: URLRequest) -> HTTPTaskPublisher {
     HTTPTaskPublisher(client: self, request: request)
