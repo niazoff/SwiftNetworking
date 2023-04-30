@@ -6,15 +6,13 @@
 //  Copyright © 2019 Natanel Niazoff. All rights reserved.
 //
 
-#if canImport(Combine)
 import Foundation
 import Combine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public class HTTPTaskSubscription: Subscription {
-  public let task: Task
+  public let task: AsyncTask
   
-  public init(task: Task) {
+  public init(task: AsyncTask) {
     self.task = task
   }
   
@@ -22,4 +20,3 @@ public class HTTPTaskSubscription: Subscription {
   
   public func cancel() { task.cancel() }
 }
-#endif

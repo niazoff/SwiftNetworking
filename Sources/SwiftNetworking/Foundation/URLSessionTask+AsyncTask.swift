@@ -1,5 +1,5 @@
 //
-//  URLSessionTask+Task.swift
+//  URLSessionTask+AsyncTask.swift
 //  SwiftNetworking
 //
 //  Created by Natanel Niazoff on 7/3/19.
@@ -8,4 +8,4 @@
 
 import Foundation
 
-extension URLSessionTask: Task {}
+extension URLSessionTask: AsyncTask {}

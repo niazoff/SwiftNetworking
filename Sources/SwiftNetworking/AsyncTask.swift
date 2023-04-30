@@ -1,5 +1,5 @@
 //
-//  Task.swift
+//  AsyncTask.swift
 //  SwiftNetworking
 //
 //  Created by Natanel Niazoff on 7/3/19.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// Encapsulates a loading task.
-public protocol Task {
+public protocol AsyncTask {
   /// Temporarily suspends a task.
   func suspend()
   

@@ -6,11 +6,9 @@
 //  Copyright © 2019 Natanel Niazoff. All rights reserved.
 //
 
-#if canImport(Combine)
 import Foundation
 import Combine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public struct HTTPTaskPublisher: Publisher {
   public typealias Output = HTTPResponse
   public typealias Failure = Error
@@ -30,4 +28,3 @@ public struct HTTPTaskPublisher: Publisher {
     }))
   }
 }
-#endif

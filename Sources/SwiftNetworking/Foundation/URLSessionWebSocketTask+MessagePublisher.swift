@@ -6,11 +6,9 @@
 //  Copyright © 2019 Natanel Niazoff. All rights reserved.
 //
 
-#if canImport(Combine)
 import Foundation
 import Combine
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 public extension URLSessionWebSocketTask {
   class MessagePublisher: Publisher {
     public typealias Output = Message
@@ -49,8 +47,6 @@ public extension URLSessionWebSocketTask {
   }
 }
 
-@available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
 extension URLSessionWebSocketTask {
   public func messagePublisher() -> MessagePublisher { MessagePublisher(task: self) }
 }
-#endif

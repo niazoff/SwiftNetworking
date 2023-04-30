@@ -10,7 +10,7 @@ import Foundation
 
 extension URLSession: HTTPClient {
   @discardableResult
-  public func send(_ request: URLRequest, completionHandler: @escaping (HTTPResult) -> Void = { _ in }) -> Task {
+  public func send(_ request: URLRequest, completionHandler: @escaping (HTTPResult) -> Void = { _ in }) -> AsyncTask {
     let task = self.dataTask(with: request) { data, response, error in
       self.dataTaskCompletionHandler(data: data, response: response, error: error, completionHandler: completionHandler)
     }

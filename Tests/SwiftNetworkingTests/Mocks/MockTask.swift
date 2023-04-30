@@ -9,7 +9,7 @@
 import Foundation
 @testable import SwiftNetworking
 
-struct MockTask: Task {
+struct MockTask: AsyncTask {
   func suspend() {}
   
   func resume() {}
